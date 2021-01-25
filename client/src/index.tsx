@@ -1,4 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-ReactDOM.render(<div>Hello World</div>, document.getElementById("root"));
+import { Listings } from "./sections";
+
+ReactDOM.render(
+  <Listings title="TinyHouse Listings" />,
+  document.getElementById("root")
+);
