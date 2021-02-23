@@ -36,7 +36,7 @@ export interface Listing {
   country: string;
   admin: string;
   city: string;
-  booking: ObjectId[];
+  bookings: ObjectId[];
   bookingsIndex: BookingsIndex;
   price: number;
   numOfGuests: number;
