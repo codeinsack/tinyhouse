@@ -24,13 +24,13 @@ const App = () => {
     <Router>
       <Layout id="app">
         <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <Route exact path="/host" component={Host}></Route>
-          <Route exact path="/listing/:id" component={Listing}></Route>
-          <Route exact path="/listings/:location" component={Listings}></Route>
-          <Route exact path="/login" component={Login}></Route>
-          <Route exact path="/user/:id" component={User}></Route>
-          <Route component={NotFound}></Route>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/host" component={Host} />
+          <Route exact path="/listing/:id" component={Listing} />
+          <Route exact path="/listings/:location" component={Listings} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/user/:id" component={User} />
+          <Route component={NotFound} />
         </Switch>
       </Layout>
     </Router>
