@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "codegen:schema": "npx apollo client:download-schema --endpoint=http://localhost:9999/api",
-    "codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=src/**/*.tsx --target=typescript"
+    "codegen:generate": "npx apollo client:codegen --localSchemaFile=schema.json --includes=src/**/*.ts --globalTypesFile=./src/lib/graphql/globalTypes.ts --target=typescript"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +50,7 @@
   "proxy": "http://localhost:9999",
   "devDependencies": {
     "@types/graphql": "^14.5.0",
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "babel-plugin-import": "^1.13.3"
   }
 }
