@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Layout } from "antd";
+import { Layout, Affix } from "antd";
 import {
   Listings,
   Listing,
@@ -10,6 +10,7 @@ import {
   Host,
   NotFound,
   Login,
+  AppHeader,
 } from "./sections";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
@@ -35,6 +36,9 @@ const App = () => {
   return (
     <Router>
       <Layout id="app">
+        <Affix offsetTop={0} className="app__affix-header">
+          <AppHeader />
+        </Affix>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/host" component={Host} />
