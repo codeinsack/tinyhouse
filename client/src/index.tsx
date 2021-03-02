@@ -37,7 +37,7 @@ const App = () => {
     <Router>
       <Layout id="app">
         <Affix offsetTop={0} className="app__affix-header">
-          <AppHeader />
+          <AppHeader viewer={viewer} />
         </Affix>
         <Switch>
           <Route exact path="/" component={Home} />
