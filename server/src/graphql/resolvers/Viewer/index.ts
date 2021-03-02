@@ -9,7 +9,7 @@ const cookieOptions = {
   httpOnly: true,
   sameSite: true,
   signed: true,
-  secure: process.env.NODE_ENV !== 'development',
+  secure: process.env.NODE_ENV === 'development' ? false : true,
 };
 
 const logInViaGoogle = async (
@@ -102,9 +102,9 @@ const logInViaCookie = async (
 
   if (!viewer) {
     res.clearCookie('viewer', cookieOptions);
-
-    return viewer;
   }
+
+  return viewer;
 };
 
 export const viewerResolvers: IResolvers = {
