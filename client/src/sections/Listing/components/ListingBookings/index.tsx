@@ -1,5 +1,6 @@
 import { Typography, List, Avatar, Divider } from "antd";
 import { Listing } from "../../../../lib/graphql/queries/Listing/__generated__/Listing";
+import { Link } from "react-router-dom";
 
 interface Props {
   listingBookings: Listing["listing"]["bookings"];
@@ -52,7 +53,9 @@ export const ListingBookings = ({
         return (
           <List.Item className="listing-bookings__item">
             {bookingHistory}
-            <Avatar src={listingBooking.tenant.avatar} size={64} />
+            <Link to={`/user/${listingBooking.tenant.id}`}>
+              <Avatar src={listingBooking.tenant.avatar} size={64} />
+            </Link>
           </List.Item>
         );
       }}
