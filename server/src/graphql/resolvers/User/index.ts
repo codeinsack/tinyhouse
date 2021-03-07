@@ -1,4 +1,7 @@
+import { Request } from 'express';
 import { IResolvers } from 'apollo-server-express';
+import { Database, User } from '../../../lib/types';
+import { authorize } from '../../../lib/utils';
 import {
   UserArgs,
   UserBookingsArgs,
@@ -6,9 +9,6 @@ import {
   UserListingsArgs,
   UserListingsData,
 } from './types';
-import { Request } from 'express';
-import { Database, User } from '../../../lib/types';
-import { authorize } from '../../../lib/utils';
 
 export const userResolvers: IResolvers = {
   Query: {
@@ -21,12 +21,12 @@ export const userResolvers: IResolvers = {
         const user = await db.users.findOne({ _id: id });
 
         if (!user) {
-          throw new Error("User can't be found");
+          throw new Error("user can't be found");
         }
 
         const viewer = await authorize(db, req);
 
-        if (viewer?._id === user._id) {
+        if (viewer && viewer._id === user._id) {
           user.authorized = true;
         }
 
@@ -52,7 +52,9 @@ export const userResolvers: IResolvers = {
       { db }: { db: Database },
     ): Promise<UserBookingsData | null> => {
       try {
-        if (!user.authorized) return null;
+        if (!user.authorized) {
+          return null;
+        }
 
         const data: UserBookingsData = {
           total: 0,
@@ -63,7 +65,7 @@ export const userResolvers: IResolvers = {
           _id: { $in: user.bookings },
         });
 
-        cursor.skip(page > 0 ? (page - 1) * limit : 0);
+        cursor = cursor.skip(page > 0 ? (page - 1) * limit : 0);
         cursor = cursor.limit(limit);
 
         data.total = await cursor.count();
@@ -80,8 +82,6 @@ export const userResolvers: IResolvers = {
       { db }: { db: Database },
     ): Promise<UserListingsData | null> => {
       try {
-        if (!user.authorized) return null;
-
         const data: UserListingsData = {
           total: 0,
           result: [],
@@ -91,7 +91,7 @@ export const userResolvers: IResolvers = {
           _id: { $in: user.listings },
         });
 
-        cursor.skip(page > 0 ? (page - 1) * limit : 0);
+        cursor = cursor.skip(page > 0 ? (page - 1) * limit : 0);
         cursor = cursor.limit(limit);
 
         data.total = await cursor.count();
