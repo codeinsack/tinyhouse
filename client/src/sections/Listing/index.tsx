@@ -66,7 +66,9 @@ export const Listing = ({ match }: RouteComponentProps<MatchParams>) => {
     />
   ) : null;
 
-  const listingCreateBookingElement = <ListingCreateBooking />;
+  const listingCreateBookingElement = listing ? (
+    <ListingCreateBooking price={listing.price} />
+  ) : null;
 
   return (
     <Content className="listings">

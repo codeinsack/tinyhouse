@@ -1,16 +1,22 @@
 import React from "react";
 import { Button, Card, Divider, Typography } from "antd";
+import { formatListingPrice } from "../../../../lib/utils";
 
 const { Paragraph, Text, Title } = Typography;
 
-export const ListingCreateBooking = () => {
+interface Props {
+  price: number;
+}
+
+export const ListingCreateBooking = ({ price }: Props) => {
   return (
     <div className="listing-bookingResolvers">
       <Card className="listing-booking__card">
         <div>
           <Paragraph>
             <Title level={2} className="listing-booking__card-title">
-              Here will be the price!
+              {formatListingPrice(price)}
+              <span>/day</span>
             </Title>
           </Paragraph>
           <Divider />
