@@ -10,7 +10,11 @@ import { Link } from "react-router-dom";
 const { Title } = Typography;
 const { Search } = Input;
 
-export const HomeHero = () => {
+interface Props {
+  onSearch: (value: string) => void;
+}
+
+export const HomeHero = ({ onSearch }: Props) => {
   return (
     <div className="home-hero">
       <div className="hone-hero__search">
@@ -20,6 +24,7 @@ export const HomeHero = () => {
           size="large"
           enterButton
           className="home-hero__search-input"
+          onSearch={onSearch}
         />
       </div>
       <Row gutter={12} className="home-hero__cards">
